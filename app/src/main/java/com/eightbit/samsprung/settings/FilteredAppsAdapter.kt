@@ -14,6 +14,7 @@
 
 package com.eightbit.samsprung.settings
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
@@ -21,9 +22,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.eightbit.samsprung.R
 import kotlinx.coroutines.CoroutineScope
@@ -89,7 +90,7 @@ class FilteredAppsAdapter(
         private val prefs: SharedPreferences,
         private val hide: HashSet<String>
     ) : RecyclerView.ViewHolder(itemView) {
-        lateinit var application: ResolveInfo
+        private lateinit var application: ResolveInfo
 
         fun bind(appInfo: ResolveInfo) {
             this.application = appInfo
@@ -115,7 +116,8 @@ class FilteredAppsAdapter(
                 }
             }
 
-            val hideSwitch = detailView.findViewById<SwitchCompat>(R.id.hiddenItemSwitch)
+            @SuppressLint("UseSwitchCompatOrMaterialCode")
+            val hideSwitch = detailView.findViewById<Switch>(R.id.hiddenItemSwitch)
             hideSwitch.isChecked = !hide.contains(application.activityInfo.packageName)
 
             hideSwitch.setOnClickListener {

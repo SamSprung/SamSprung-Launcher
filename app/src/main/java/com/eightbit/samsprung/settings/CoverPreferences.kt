@@ -53,7 +53,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -91,6 +90,7 @@ private val Number.toPx get() = TypedValue.applyDimension(
 
 private val CharSequence.toPref get() = this.toString().lowercase().replace(" ", "_")
 
+@SuppressLint("UseSwitchCompatOrMaterialCode")
 class CoverPreferences : AppCompatActivity() {
 
     private val prefs: SharedPreferences by lazy {
@@ -100,12 +100,12 @@ class CoverPreferences : AppCompatActivity() {
     private lateinit var coordinator: CoordinatorLayout
     private var updateManager : UpdateManager? = null
 
-    private var mainSwitch: SwitchCompat? = null
-    private var accessibility: SwitchCompat? = null
-    private var optimization: SwitchCompat? = null
-    private var notifications: SwitchCompat? = null
-    private var statistics: SwitchCompat? = null
-    private var keyboard: SwitchCompat? = null
+    private var mainSwitch: Switch? = null
+    private var accessibility: Switch? = null
+    private var optimization: Switch? = null
+    private var notifications: Switch? = null
+    private var statistics: Switch? = null
+    private var keyboard: Switch? = null
     private lateinit var wikiDrawer: DrawerLayout
 
     private lateinit var hiddenList: RecyclerView
@@ -1225,8 +1225,7 @@ class CoverPreferences : AppCompatActivity() {
         menuInflater.inflate(R.menu.cover_settings_menu, menu)
         val actionSwitch: MenuItem = menu.findItem(R.id.switch_action_bar)
         actionSwitch.setActionView(R.layout.configure_switch)
-        mainSwitch = menu.findItem(R.id.switch_action_bar).actionView
-            ?.findViewById(R.id.switch2) as SwitchCompat
+        mainSwitch = menu.findItem(R.id.switch_action_bar).actionView?.findViewById(R.id.switch2)
         mainSwitch?.isChecked = Settings.canDrawOverlays(applicationContext)
         if (Version.isTiramisu && mainSwitch?.isChecked == true) {
             requestNotification.launch(Manifest.permission.POST_NOTIFICATIONS)

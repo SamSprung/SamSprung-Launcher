@@ -8,7 +8,7 @@
     android:paddingStart="0dp"
     android:paddingEnd="4dp">
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/switch2"
         android:layout_width="68dp"
         android:layout_height="56dp"
@@ -23,6 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.001"
-        tools:ignore="SmallSp"
+        tools:ignore="SmallSp,UseSwitchCompatOrMaterialXml"
         android:theme="@style/CoreSwitch"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

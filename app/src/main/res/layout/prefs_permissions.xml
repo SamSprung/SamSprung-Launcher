@@ -45,13 +45,14 @@
                 android:text="@string/details_notifications" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/notifications_switch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="end|center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -140,13 +141,14 @@
                 android:text="@string/details_usage" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/usage_switch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="end|center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -186,13 +188,14 @@
                 android:text="@string/details_optimization" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/optimization_switch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="end|center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -232,13 +235,14 @@
                 android:text="@string/details_accessibility" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.SwitchCompat
+        <Switch
             android:id="@+id/accessibility_switch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="end|center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 </LinearLayout>
 </merge>

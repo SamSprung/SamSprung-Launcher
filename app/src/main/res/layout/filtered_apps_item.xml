@@ -31,10 +31,11 @@
             android:gravity="center"
             android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/hiddenItemSwitch"
         android:layout_width="56dp"
         android:layout_height="48dp"
         android:layout_marginEnd="4dp"
-        android:layout_gravity="end|center_vertical" />
+        android:layout_gravity="end|center_vertical"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 </LinearLayout>
