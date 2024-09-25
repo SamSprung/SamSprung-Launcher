@@ -1118,12 +1118,12 @@ class SamSprungOverlay : AppCompatActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setScreenTimeout(findViewById(R.id.bottom_sheet_main))
         Handler(Looper.getMainLooper()).postDelayed({
             showBottomHandle(findViewById(R.id.bottom_handle), findViewById(R.id.menu_fab))
-            if (null != intent?.action && SamSprung.launcher == intent.action) {
+            if (null != intent.action && SamSprung.launcher == intent.action) {
                 bottomSheetBehaviorMain.state = BottomSheetBehavior.STATE_EXPANDED
             }
         }, 150)
