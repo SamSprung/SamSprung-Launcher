@@ -65,7 +65,7 @@ class FilteredAppsAdapter(
         return SimpleViewHolder(parent, pacMan, prefs, hide)
     }
 
-    override fun getPopupText(position: Int) : CharSequence {
+    override fun getPopupText(view: View, position: Int) : CharSequence {
         if (position >= packages.size) return "?"
         val item = packages[position]
         val label: CharSequence? = try {
