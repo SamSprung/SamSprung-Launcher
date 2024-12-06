@@ -73,7 +73,7 @@ class FilteredAppsAdapter(
         } catch (ex: Exception) {
             try {
                 item.nonLocalizedLabel
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 null
             }
         }
@@ -102,7 +102,7 @@ class FilteredAppsAdapter(
                 } catch (ex: Exception) {
                     try {
                         application.nonLocalizedLabel
-                    } catch (ignored: Exception) {
+                    } catch (_: Exception) {
                         null
                     }
                 }

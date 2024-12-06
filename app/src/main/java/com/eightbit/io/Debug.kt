@@ -39,7 +39,7 @@ class Debug(private var context: Context) {
             "new?labels=logcat&template=bug_report.yml&title=[Bug]%3A+"
 
     private fun getDeviceProfile(isSecureDevice: Boolean): StringBuilder {
-        val separator = System.getProperty("line.separator") ?: "\n"
+        val separator = System.lineSeparator() ?: "\n"
         val log = StringBuilder(separator)
         log.append(SamSprung.versionLabel)
         log.append(separator)
@@ -84,22 +84,22 @@ class Debug(private var context: Context) {
             context.startActivity(Intent.createChooser(
                 emailIntent, context.getString(R.string.logcat_crash)
             ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        } catch (anf: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             try {
                 val emailIntent = setEmailParams(Intent.ACTION_SEND, subject, logText)
                 context.startActivity(Intent.createChooser(
                     emailIntent, context.getString(R.string.logcat_crash)
                 ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-            } catch (ex: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 try {
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(issueUrl)))
-                } catch (ignored: Exception) { }
+                } catch (_: Exception) { }
             }
         }
     }
 
     fun processException(isSecureDevice: Boolean, exception: String) {
-        val separator = System.getProperty("line.separator") ?: "\n"
+        val separator = System.lineSeparator() ?: "\n"
         val log = getDeviceProfile(isSecureDevice)
         log.append(separator).append(separator).append(exception)
         submitLogcat(context, log.toString())
@@ -109,7 +109,7 @@ class Debug(private var context: Context) {
     @Throws(IOException::class)
     fun captureLogcat(isSecureDevice: Boolean) {
         CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-            val separator = System.getProperty("line.separator") ?: "\n"
+            val separator = System.lineSeparator() ?: "\n"
             val log = getDeviceProfile(isSecureDevice)
             var line: String?
             val mLogcatProc = Runtime.getRuntime().exec(arrayOf(
@@ -142,7 +142,7 @@ class Debug(private var context: Context) {
                 val get = c.getMethod("get", String::class.java)
                 val name = get.invoke(c, "ro.product.manufacturer") as String
                 name.ifEmpty { "Unknown" }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 Build.MANUFACTURER
             }
         }

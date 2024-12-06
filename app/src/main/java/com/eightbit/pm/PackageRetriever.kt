@@ -99,7 +99,7 @@ class PackageRetriever(val context: Context) {
                     "android:get_usage_stats", Process.myUid(), context.packageName
                 ).run { if (this == AppOpsManager.MODE_ALLOWED) return true }
             }
-        } catch (ignored: SecurityException) { }
+        } catch (_: SecurityException) { }
         return false
     }
 }

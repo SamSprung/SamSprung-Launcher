@@ -26,16 +26,14 @@ class CoverOptions(private var bounds: Rect?) {
     }
 
     fun getAnimatedOptions(display: Int, anchor: View?, intent: Intent?): ActivityOptions {
-        return if (null != intent?.sourceBounds) {
+        return intent?.sourceBounds?.let { bounds ->
             ActivityOptions.makeScaleUpAnimation(
                 anchor,
-                intent.sourceBounds!!.left,
-                intent.sourceBounds!!.top,
-                intent.sourceBounds!!.width(),
-                intent.sourceBounds!!.height()
+                bounds.left,
+                bounds.top,
+                bounds.width(),
+                bounds.height()
             ).setLaunchDisplayId(display).setLaunchBounds(bounds)
-        } else {
-            getActivityOptions(display)
-        }
+        } ?: getActivityOptions(display)
     }
 }

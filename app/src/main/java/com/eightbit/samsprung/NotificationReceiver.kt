@@ -52,7 +52,7 @@ class NotificationReceiver : NotificationListenerService() {
         isConnected = false
         try {
             requestRebind(ComponentName(applicationContext, NotificationReceiver::class.java))
-        } catch (ignored: Exception) { }
+        } catch (_: Exception) { }
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {

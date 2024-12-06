@@ -234,13 +234,13 @@ class SamSprungOverlay : AppCompatActivity() {
                         animation.start()
                     }
                 }
-            } catch (ignored: Exception) { }
+            } catch (_: Exception) { }
         } else {
             val wallpaper = File(filesDir, "wallpaper.png")
             if (wallpaper.exists()) {
                 try {
                     background = Drawable.createFromPath(wallpaper.absolutePath)
-                } catch (ignored: Exception) { }
+                } catch (_: Exception) { }
             }
             val permissions: Array<String> =
                 if (Version.isTiramisu)
@@ -261,7 +261,7 @@ class SamSprungOverlay : AppCompatActivity() {
                             ScaledContext(applicationContext).cover()
                         ).peekDrawable()
                     }
-                } catch (ignored: SecurityException) { }
+                } catch (_: SecurityException) { }
             }
             if (null != background) coordinator.background = background
         }
@@ -915,7 +915,7 @@ class SamSprungOverlay : AppCompatActivity() {
                 if (packageManager.getApplicationLabel(ai).contains(launchCommand, true)) {
                     matchedApps.add(packageInfo)
                 }
-            } catch (ignored: PackageManager.NameNotFoundException) { }
+            } catch (_: PackageManager.NameNotFoundException) { }
         }
         if (matchedApps.isNotEmpty()) {
             if (matchedApps.size == 1) {
@@ -1160,12 +1160,12 @@ class SamSprungOverlay : AppCompatActivity() {
     }
 
     fun onStopOverlay() {
-        try { camManager.unregisterTorchCallback(torchCallback) } catch (ignored: Exception) { }
+        try { camManager.unregisterTorchCallback(torchCallback) } catch (_: Exception) { }
         timeoutHandler.removeCallbacksAndMessages(null)
         fabShowHandler.removeCallbacksAndMessages(null)
         findViewById<View>(R.id.bottom_sheet_main).keepScreenOn = false
-        try { unregisterReceiver(battReceiver) } catch (ignored: Exception) { }
-        try { unregisterReceiver(offReceiver) } catch (ignored: Exception) { }
+        try { unregisterReceiver(battReceiver) } catch (_: Exception) { }
+        try { unregisterReceiver(offReceiver) } catch (_: Exception) { }
         finish()
     }
 
@@ -1175,7 +1175,7 @@ class SamSprungOverlay : AppCompatActivity() {
         if (prefs.getBoolean(getString(R.string.toggle_widgets).toPref, true)) {
             try {
                 appWidgetHost?.stopListening()
-            } catch (ignored: NullPointerException) { }
+            } catch (_: NullPointerException) { }
             model.unbind()
             model.abortLoaders()
             contentResolver.unregisterContentObserver(mObserver)

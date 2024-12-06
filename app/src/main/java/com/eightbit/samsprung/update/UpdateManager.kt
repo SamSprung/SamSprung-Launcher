@@ -77,11 +77,11 @@ class UpdateManager(private var activity: AppCompatActivity) {
         try {
             (activity.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE)
                     as NotificationManager).cancel(SamSprung.request_code)
-        } catch (ignored: Exception) { }
+        } catch (_: Exception) { }
         if (activity is UpdateShimActivity) {
             with (activity.applicationContext.packageManager.packageInstaller) {
                 mySessions.forEach {
-                    try { abandonSession(it.sessionId) } catch (ignored: Exception) { }
+                    try { abandonSession(it.sessionId) } catch (_: Exception) { }
                 }
             }
         } else {
@@ -181,7 +181,7 @@ class UpdateManager(private var activity: AppCompatActivity) {
                             updateUrl = asset["browser_download_url"] as String
                             updateListener?.onUpdateFound()
                         }
-                    } catch (ignored: JSONException) { }
+                    } catch (_: JSONException) { }
                 }
                 override fun onException(e: Exception) { }
             })

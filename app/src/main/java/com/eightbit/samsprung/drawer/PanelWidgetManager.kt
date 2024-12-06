@@ -84,7 +84,7 @@ class PanelWidgetManager(
                     layout.children.forEach { child ->
                         if (child is AppWidgetHostView) layout.removeView(child)
                     }
-                } catch (ignored: Exception) { }
+                } catch (_: Exception) { }
                 layout.addView(launcherInfo.hostView, params)
             }
         })
@@ -203,7 +203,7 @@ class PanelWidgetManager(
                         layout.children.forEach {
                             if (it is AppWidgetHostView) layout.removeView(it)
                         }
-                    } catch (ignored: Exception) { }
+                    } catch (_: Exception) { }
                     val layout = view as LinearLayout
                     layout.addView(item.hostView, params)
                 }

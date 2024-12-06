@@ -317,8 +317,8 @@ class AppDisplayListener : Service() {
             with (getSystemService(DISPLAY_SERVICE) as DisplayManager) {
                 unregisterDisplayListener(mDisplayListener)
             }
-        } catch (ignored: Exception) { }
-        try { unregisterReceiver(offReceiver) } catch (ignored: Exception) { }
+        } catch (_: Exception) { }
+        try { unregisterReceiver(offReceiver) } catch (_: Exception) { }
         ScaledContext(
             ScaledContext(applicationContext).cover(R.style.Theme_SecondScreen)
         ).internal(1.5f).run {
@@ -326,7 +326,7 @@ class AppDisplayListener : Service() {
                 try {
                     removeViewImmediate(floatView)
                 } catch (rvi: Exception) {
-                    try { removeView(floatView) } catch (ignored: Exception) { }
+                    try { removeView(floatView) } catch (_: Exception) { }
                 }
             }
         }

@@ -858,7 +858,7 @@ class CoverPreferences : AppCompatActivity() {
                                         Uri.parse("package:apps.ijp.coveros")
                                     ))
                                     dialog.dismiss()
-                                } catch (ignored: Exception) { }
+                                } catch (_: Exception) { }
                             }
                             .setNegativeButton(R.string.button_disable) { dialog, _ ->
                                 startActivity(Intent(
@@ -961,7 +961,7 @@ class CoverPreferences : AppCompatActivity() {
                     } catch (ex: SecurityException) {
                         WallpaperManager.getInstance(this@CoverPreferences).peekDrawable()
                     }
-                } catch (ignored: SecurityException) { }
+                } catch (_: SecurityException) { }
             }
         }
     }
@@ -1202,7 +1202,7 @@ class CoverPreferences : AppCompatActivity() {
                     if (this == AppOpsManager.MODE_ALLOWED) return true
                 }
             }
-        } catch (ignored: SecurityException) { }
+        } catch (_: SecurityException) { }
         return false
     }
 

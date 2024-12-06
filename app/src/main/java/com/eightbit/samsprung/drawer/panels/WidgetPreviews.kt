@@ -149,7 +149,7 @@ class WidgetPreviews(mLauncher: SamSprungOverlay) {
         // Delete everything
         try {
             mDb?.writableDatabase?.delete(CacheDb.TABLE_NAME, null, null)
-        } catch (ignored: SQLiteDiskIOException) { }
+        } catch (_: SQLiteDiskIOException) { }
     }
 
     fun generateWidgetPreview(
@@ -213,7 +213,7 @@ class WidgetPreviews(mLauncher: SamSprungOverlay) {
                             (mAppIconSize * iconScale).toInt()
                         )
                     }
-                } catch (ignored: NotFoundException) { }
+                } catch (_: NotFoundException) { }
             }
         }
 

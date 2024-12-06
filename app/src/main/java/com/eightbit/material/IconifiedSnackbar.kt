@@ -116,7 +116,7 @@ class IconifiedSnackbar @JvmOverloads constructor(activity: Activity, layout: Vi
         return try {
             mActivity.resources.getResourceTypeName(value)
             buildTickerBar(msg, value, Snackbar.LENGTH_LONG)
-        } catch (exception: Exception) {
+        } catch (_: Exception) {
             buildTickerBar(msg, R.drawable.ic_samsprung_24dp, value)
         }
     }

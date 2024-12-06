@@ -149,7 +149,7 @@ class DrawerAppAdapter(
                     } catch (ex: Exception) {
                         try {
                             resolveInfo.nonLocalizedLabel
-                        } catch (ignored: Exception) {
+                        } catch (_: Exception) {
                             null
                         }
                     }

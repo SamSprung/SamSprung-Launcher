@@ -66,13 +66,13 @@ class SamSprung : Application() {
             error.printStackTrace(PrintWriter(exception))
             try {
                 OrientationManager(this).removeOrientationLayout()
-            } catch (ignored: Exception) { }
+            } catch (_: Exception) { }
             try {
                 Debug(this).processException(
                     with (getSystemService(KEYGUARD_SERVICE) as KeyguardManager) { isDeviceSecure },
                     exception.toString()
                 )
-            } catch (ignored: Exception) { }
+            } catch (_: Exception) { }
             // Unrecoverable error encountered
             android.os.Process.killProcess(android.os.Process.myPid())
             exitProcess(-1)

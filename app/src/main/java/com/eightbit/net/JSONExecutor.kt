@@ -53,7 +53,7 @@ class JSONExecutor(url: String) {
                 return@launch
             } catch (fnf: FileNotFoundException) {
                 return@launch
-            } catch (ignored: UnknownHostException) { }
+            } catch (_: UnknownHostException) { }
             try {
                 var conn = URL(url).asConnection.withToken
                 var statusCode = conn.responseCode
