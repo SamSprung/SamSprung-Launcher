@@ -39,11 +39,11 @@ class DonationManager internal constructor(private val activity: CoverPreference
     private val subSkuDetails: ArrayList<ProductDetails> = arrayListOf()
 
     private fun getIAP(amount: Int) : String {
-        return String.format("subscription_%02d", amount)
+        return String.format(Locale.ROOT, "subscription_%02d", amount)
     }
 
     private fun getSub(amount: Int) : String {
-        return String.format("monthly_%02d", amount)
+        return String.format(Locale.ROOT, "monthly_%02d", amount)
     }
 
     private val iapList: ArrayList<String> = arrayListOf()

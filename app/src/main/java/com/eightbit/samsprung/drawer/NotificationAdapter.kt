@@ -83,7 +83,7 @@ class NotificationAdapter(
         }
         holder.itemView.setOnLongClickListener {
             holder.listener?.onNoticeLongClicked(holder.itemView,
-                holder.bindingAdapterPosition, holder.notice) ?: false
+                holder.bindingAdapterPosition, holder.notice) == true
         }
         holder.bind(getItem(holder.bindingAdapterPosition))
     }
@@ -228,7 +228,7 @@ class NotificationAdapter(
                                 NotificationCompat.EXTRA_TEXT_LINES
                             )
                             if (null != textArray) {
-                                val textLines = Arrays.toString(textArray)
+                                val textLines = textArray.contentToString()
                                 if (textLines != "[]") linesText.text = textLines
                             }
                         }
@@ -280,7 +280,7 @@ class NotificationAdapter(
     private fun validateTextLines(extras: Bundle) : Boolean {
         if (extras.containsKey(NotificationCompat.EXTRA_TEXT_LINES)) {
             val textArray = extras.getCharSequenceArray(NotificationCompat.EXTRA_TEXT_LINES)
-            if (null != textArray && Arrays.toString(textArray) != "[]") return true
+            if (null != textArray && textArray.contentToString() != "[]") return true
         }
         return false
     }

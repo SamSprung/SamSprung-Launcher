@@ -121,7 +121,9 @@ class DrawerAppAdapter(
         override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
             if (filteredData === filterResults.values) return
             val results: MutableList<ResolveInfo> = mutableListOf()
-            filterResults.values?.let { results.addAll(it as Collection<ResolveInfo>) }
+            filterResults.values?.let {
+                @Suppress("UNCHECKED_CAST") results.addAll(it as Collection<ResolveInfo>)
+            }
             filteredData = results
             notifyDataSetChanged()
         }
@@ -146,7 +148,7 @@ class DrawerAppAdapter(
                     textView = itemView.findViewById(R.id.widgetItemText)
                     val label: CharSequence? = try {
                         resolveInfo.loadLabel(packageManager)
-                    } catch (ex: Exception) {
+                    } catch (_: Exception) {
                         try {
                             resolveInfo.nonLocalizedLabel
                         } catch (_: Exception) {

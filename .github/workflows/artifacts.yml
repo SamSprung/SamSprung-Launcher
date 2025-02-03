@@ -19,9 +19,6 @@ jobs:
       uses: c-hive/gha-remove-artifacts@v1.3.0
       with:
         age: '2 days' # '<number> <unit>', parsed by Moment.js
-        # Optional inputs
-        # skip-tags: true
-        skip-recent: 2
 
     - name: Purge cache
       continue-on-error: true

@@ -50,7 +50,9 @@ class UpdateReceiver : BroadcastReceiver() {
                     PackageInstaller.STATUS_PENDING_USER_ACTION -> {
                         intent.parcelable<Intent>(Intent.EXTRA_INTENT)?.let {
                             startLauncherActivity(
-                                context, Intent.parseUri(it.toUri(0), Intent.URI_ALLOW_UNSAFE)
+                                context, Intent.parseUri(
+                                    it.toUri(0), Intent.URI_ALLOW_UNSAFE or Intent.URI_INTENT_SCHEME
+                                )
                             )
                         }
                     }
@@ -69,7 +71,7 @@ class UpdateReceiver : BroadcastReceiver() {
         context.startForegroundService(Intent(context, OnBroadcastService::class.java))
     }
 
-    private fun startLauncherActivity(context: Context, intent: Intent?) {
-        context.startActivity(intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    private fun startLauncherActivity(context: Context, intent: Intent) {
+        context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 }

@@ -18,6 +18,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Rect
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 
 class CoverOptions(private var bounds: Rect?) {
 
@@ -35,5 +36,21 @@ class CoverOptions(private var bounds: Rect?) {
                 bounds.height()
             ).setLaunchDisplayId(display).setLaunchBounds(bounds)
         } ?: getActivityOptions(display)
+    }
+
+    fun getActivityOptionsCompat(display: Int): ActivityOptionsCompat {
+        return ActivityOptionsCompat.makeBasic().setLaunchDisplayId(display).setLaunchBounds(bounds)
+    }
+
+    fun getAnimatedOptionsCompat(display: Int, anchor: View, intent: Intent?): ActivityOptionsCompat {
+        return intent?.sourceBounds?.let { bounds ->
+            ActivityOptionsCompat.makeScaleUpAnimation(
+                anchor,
+                bounds.left,
+                bounds.top,
+                bounds.width(),
+                bounds.height()
+            ).setLaunchDisplayId(display).setLaunchBounds(bounds)
+        } ?: getActivityOptionsCompat(display)
     }
 }

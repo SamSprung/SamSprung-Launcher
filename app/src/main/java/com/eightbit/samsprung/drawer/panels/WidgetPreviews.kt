@@ -31,7 +31,7 @@ import java.lang.ref.SoftReference
 import java.lang.ref.WeakReference
 
 class WidgetPreviews(mLauncher: SamSprungOverlay) {
-    private val mContext: Context
+    private val mContext = mLauncher
     private val mPackageManager: PackageManager
 
     // Used for drawing widget previews
@@ -305,7 +305,7 @@ class WidgetPreviews(mLauncher: SamSprungOverlay) {
     private fun getFullResIcon(resources: Resources, iconId: Int, user: UserHandle): Drawable {
         var drawable: Drawable? = try {
             ResourcesCompat.getDrawableForDensity(resources, iconId, 160, resources.newTheme())
-        } catch (e: NotFoundException) {
+        } catch (_: NotFoundException) {
             null
         }
         if (drawable == null) {
@@ -320,7 +320,7 @@ class WidgetPreviews(mLauncher: SamSprungOverlay) {
             // shortcuts/widgets from other profiles. It won't work as is
             // for packages that are only available in a different user profile.
             packageName?.let { mPackageManager.getResourcesForApplication(it) }
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             null
         }
         resources?.let { if (iconId != 0) return getFullResIcon(it, iconId, user) }
@@ -328,7 +328,6 @@ class WidgetPreviews(mLauncher: SamSprungOverlay) {
     }
 
     init {
-        mContext = mLauncher
         mPackageManager = mContext.packageManager
         mAppIconSize = mContext.resources.getDimensionPixelSize(R.dimen.app_icon_size)
         mProfileBadgeSize = mContext.resources.getDimensionPixelSize(

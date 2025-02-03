@@ -48,10 +48,10 @@ jobs:
          GIT_HASH=$(git rev-parse --short HEAD)
          echo "GIT_HASH=${GIT_HASH}" >> $GITHUB_ENV
 
-    # Example use of `signedReleaseFile` output -- not needed
     - uses: actions/upload-artifact@v4
       with:
         name: SamSprung-${{ env.GIT_HASH }}
+        retention-days: 1
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
     - uses: SamSprung/action-github-releases@v1.0.0

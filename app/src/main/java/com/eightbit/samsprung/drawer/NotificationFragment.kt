@@ -274,7 +274,7 @@ class NotificationFragment : Fragment(), NotificationAdapter.OnNoticeClickListen
     ) : Boolean {
         tactileFeedback()
         val content = StringBuilder(itemView.findViewById<TextView>(R.id.title).text)
-            .append(System.getProperty("line.separator") ?: "\n")
+            .append(System.lineSeparator() ?: "\n")
             .append(itemView.findViewById<TextView>(R.id.lines).text)
         textSpeech?.speak(content, TextToSpeech.QUEUE_ADD, null, SamSprung.notification)
         return true

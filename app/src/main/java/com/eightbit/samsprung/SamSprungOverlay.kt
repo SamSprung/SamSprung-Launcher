@@ -60,7 +60,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -168,7 +167,7 @@ class SamSprungOverlay : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
         val appWidgetId = result.data?.getIntExtra(
             AppWidgetManager.EXTRA_APPWIDGET_ID, -1) ?: -1
-        if (result.resultCode == FragmentActivity.RESULT_CANCELED) {
+        if (result.resultCode == RESULT_CANCELED) {
             if (appWidgetId != -1) {
                 appWidgetHost?.deleteAppWidgetId(appWidgetId)
             }
@@ -256,7 +255,7 @@ class SamSprungOverlay : AppCompatActivity() {
                         WallpaperManager.getInstance(
                             ScaledContext(applicationContext).cover()
                         ).drawable
-                    } catch (ex: SecurityException) {
+                    } catch (_: SecurityException) {
                         WallpaperManager.getInstance(
                             ScaledContext(applicationContext).cover()
                         ).peekDrawable()
@@ -310,7 +309,7 @@ class SamSprungOverlay : AppCompatActivity() {
             override fun onReceive(context: Context?, intent: Intent) {
                 if (intent.action == Intent.ACTION_BATTERY_CHANGED) {
                     batteryLevel.post {
-                        batteryLevel.text = String.format("%d%%",
+                        batteryLevel.text = String.format(Locale.ROOT, "%d%%",
                             intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 100))
                     }
                 }
@@ -404,7 +403,8 @@ class SamSprungOverlay : AppCompatActivity() {
                                 R.id.toggle_wifi -> {
                                     if (buttonAuth.isInvisible) {
                                         wifiEnabler.launch(
-                                            Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY)
+                                            Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY)/*,
+                                            CoverOptions(null).getActivityOptionsCompat(1)*/
                                         )
                                     } else {
                                         val authBar: Snackbar = IconifiedSnackbar(
@@ -436,7 +436,10 @@ class SamSprungOverlay : AppCompatActivity() {
 
                                 R.id.toggle_nfc -> {
                                     if (buttonAuth.isInvisible) {
-                                        nfcEnabler.launch(Intent(Settings.Panel.ACTION_NFC))
+                                        nfcEnabler.launch(
+                                            Intent(Settings.Panel.ACTION_NFC)/*,
+                                            CoverOptions(null).getActivityOptionsCompat(1)*/
+                                        )
                                     } else {
                                         val authBar: Snackbar = IconifiedSnackbar(
                                             this@SamSprungOverlay, bottomSheet as ViewGroup

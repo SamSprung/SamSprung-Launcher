@@ -27,7 +27,6 @@ import android.os.*
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -201,7 +200,7 @@ class AppDisplayListener : Service() {
 
     private fun restoreActivityDisplay(componentName: ComponentName?, display: Int) {
         ScaledContext(applicationContext).restore(display).run {
-            with (getSystemService(AppCompatActivity.LAUNCHER_APPS_SERVICE) as LauncherApps) {
+            with (getSystemService(LAUNCHER_APPS_SERVICE) as LauncherApps) {
                 startMainActivity(
                     componentName,
                     Process.myUserHandle(),
@@ -276,7 +275,8 @@ class AppDisplayListener : Service() {
     @SuppressLint("LaunchActivityFromNotification")
     private fun showForegroundNotification(startId: Int) {
         val mNotificationManager: NotificationManager = getSystemService(
-            Context.NOTIFICATION_SERVICE) as NotificationManager
+            NOTIFICATION_SERVICE
+        ) as NotificationManager
         val pendingIntent = PendingIntent.getService(this, 0,
             Intent(this, AppDisplayListener::class.java),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
@@ -325,7 +325,7 @@ class AppDisplayListener : Service() {
             with (getSystemService(WINDOW_SERVICE) as WindowManager) {
                 try {
                     removeViewImmediate(floatView)
-                } catch (rvi: Exception) {
+                } catch (_: Exception) {
                     try { removeView(floatView) } catch (_: Exception) { }
                 }
             }

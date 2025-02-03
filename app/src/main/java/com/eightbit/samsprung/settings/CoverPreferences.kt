@@ -194,7 +194,7 @@ class CoverPreferences : AppCompatActivity() {
                     Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS,
                     Uri.parse("package:$packageName")
                 ))
-            } catch (anf: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 optimizationLauncher.launch(Intent(
                     Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
                 ))
@@ -243,7 +243,7 @@ class CoverPreferences : AppCompatActivity() {
                 ))
                 playIntent.setPackage("com.android.vending")
                 keyboardLauncher.launch(playIntent)
-            } catch (exception: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 keyboardLauncher.launch(Intent(Intent.ACTION_VIEW, Uri.parse(
                         "https://play.google.com/store/apps/details?id="
                                 + BuildConfig.APPLICATION_ID + ".ime"
@@ -958,7 +958,7 @@ class CoverPreferences : AppCompatActivity() {
                 try {
                     coordinator.background = try {
                         WallpaperManager.getInstance(this@CoverPreferences).drawable
-                    } catch (ex: SecurityException) {
+                    } catch (_: SecurityException) {
                         WallpaperManager.getInstance(this@CoverPreferences).peekDrawable()
                     }
                 } catch (_: SecurityException) { }
@@ -1094,7 +1094,7 @@ class CoverPreferences : AppCompatActivity() {
                 ScaledContext(this).cover().run {
                     startForegroundService(Intent(this, OnBroadcastService::class.java))
                 }
-            } catch (ex: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 Toast.makeText(
                     this@CoverPreferences, R.string.display_unavailable, Toast.LENGTH_SHORT
                 ).show()
@@ -1179,7 +1179,7 @@ class CoverPreferences : AppCompatActivity() {
             Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
         )
         return serviceString?.contains(packageName
-                + File.separator + AccessibilityObserver::class.java.name) ?: false
+                + File.separator + AccessibilityObserver::class.java.name) == true
     }
 
     private fun hasNotificationListener(): Boolean {
@@ -1210,7 +1210,7 @@ class CoverPreferences : AppCompatActivity() {
         return try {
             packageManager.getPackageInfo(BuildConfig.APPLICATION_ID + ".ime", 0)
             true
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             false
         }
     }
@@ -1286,7 +1286,7 @@ class CoverPreferences : AppCompatActivity() {
             ScaledContext(this).cover().run {
                 startForegroundService(Intent(this, OnBroadcastService::class.java))
             }
-        } catch (ex: IllegalArgumentException) {
+        } catch (_: IllegalArgumentException) {
             Toast.makeText(
                 this@CoverPreferences, R.string.display_unavailable, Toast.LENGTH_SHORT
             ).show()

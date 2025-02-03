@@ -70,7 +70,7 @@ class FilteredAppsAdapter(
         val item = packages[position]
         val label: CharSequence? = try {
             item.loadLabel(pacMan)
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
             try {
                 item.nonLocalizedLabel
             } catch (_: Exception) {
@@ -99,7 +99,7 @@ class FilteredAppsAdapter(
             CoroutineScope(Dispatchers.IO).launch {
                 val label: CharSequence? = try {
                     application.loadLabel(packageManager)
-                } catch (ex: Exception) {
+                } catch (_: Exception) {
                     try {
                         application.nonLocalizedLabel
                     } catch (_: Exception) {

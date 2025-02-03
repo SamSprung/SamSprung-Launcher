@@ -38,7 +38,7 @@ class OrientationManager(context: Context) {
                 windowManager.updateViewLayout(it.get(), orientationLayout)
                 try {
                     windowManager.removeViewImmediate(it.get())
-                } catch (rvi: Exception) {
+                } catch (_: Exception) {
                     try { windowManager.removeView(it.get()) } catch (_: Exception) { }
                 }
             } ?: windowManager.run {
@@ -46,7 +46,7 @@ class OrientationManager(context: Context) {
                 updateViewLayout(orientationManager, orientationLayout)
                 try {
                     removeViewImmediate(orientationManager)
-                } catch (rvi: Exception) {
+                } catch (_: Exception) {
                     try {
                         removeView(orientationManager)
                     } catch (_: Exception) { }

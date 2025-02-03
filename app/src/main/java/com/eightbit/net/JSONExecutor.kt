@@ -51,7 +51,7 @@ class JSONExecutor(url: String) {
                 val result = URL(url).readText()
                 listener?.onResults(result)
                 return@launch
-            } catch (fnf: FileNotFoundException) {
+            } catch (_: FileNotFoundException) {
                 return@launch
             } catch (_: UnknownHostException) { }
             try {

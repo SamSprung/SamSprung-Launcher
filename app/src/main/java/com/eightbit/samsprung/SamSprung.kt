@@ -16,9 +16,7 @@ package com.eightbit.samsprung
 
 import android.app.Application
 import android.app.KeyguardManager
-import android.text.Spanned
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.text.HtmlCompat
 import com.eightbit.io.Debug
 import com.eightbit.samsprung.drawer.OrientationManager
 import com.eightbit.samsprung.settings.Preferences
