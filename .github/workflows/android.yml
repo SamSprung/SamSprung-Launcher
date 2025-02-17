@@ -5,9 +5,27 @@ on:
     branches: [ launcher ]
 
 permissions:
-  contents: write
+  contents: read
+  actions: write
 
 jobs:
+  clean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+    - name: Remove artifacts
+      continue-on-error: true
+      uses: c-hive/gha-remove-artifacts@v1.3.0
+      with:
+        age: '2 days' # '<number> <unit>', parsed by Moment.js
+
+    - name: Purge cache
+      continue-on-error: true
+      uses: MyAlbum/purge-cache@v1
+      with:
+        max-age: 172800 # 2 days, default: 7 days since last use
+
   build:
     runs-on: ubuntu-latest
 
